@@ -53,7 +53,13 @@
             <!-- End Sidebar -->
 
             <!-- Main Content -->
-            @yield('content')
+            <div class="main-content">
+                <div class="container-fluid">
+                    <div class="row">
+                        @yield('content')
+                    </div>
+                </div>
+            </div>
             <!-- End Main Content -->
         </div>
         <!-- End Main Wrapper -->

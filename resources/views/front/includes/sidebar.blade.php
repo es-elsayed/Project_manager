@@ -15,12 +15,12 @@
         <ul class="nav">
             <li class="nav-category">Main</li>
             <li class="active">
-                <a href="index.html">
-                    <i class="icofont-pie-chart"></i>
-                    <span class="link-title">Dashboard</span>
+                <a href="{{ route('tasks.index') }}">
+                    <i class="icofont-calendar"></i>
+                    <span class="link-title">Tasks</span>
                 </a>
             </li>
-            <li>
+            {{-- <li>
                 <a href="#">
                     <i class="icofont-shopping-cart"></i>
                     <span class="link-title">Ecommerce</span>
@@ -423,7 +423,7 @@
                     <span class="link-title">Disable Menu</span>
                 </a>
             </li>
-            <li class="nav-category">Support</li>
+            <li class="nav-category">Support</li> --}}
         </ul>
         <!-- End Nav -->
     </div>

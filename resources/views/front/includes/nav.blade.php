@@ -32,8 +32,8 @@
 
                                     <!-- User Info -->
                                     <div class="user-info">
-                                        <h4 class="user-name">Abrilay Khatun</h4>
-                                        <p class="user-email">abrilakh@gmail.com</p>
+                                        <h4 class="user-name">{{ Auth::user()->name }}</h4>
+                                        <p class="user-email">{{ Auth::user()->email }}</p>
                                     </div>
                                     <!-- End User Info -->
                                 </div>
@@ -42,7 +42,7 @@
                                 <a href="#">My Profile</a>
                                 <a href="#">task</a>
                                 <a href="#">Settings</a>
-                                <a href="#">Log Out</a>
+                                <a href="{{ route('logout') }}">Log Out</a>
                             </div>
                         </div>
                         <!-- End Main Header User -->
@@ -78,7 +78,8 @@
                                             China
                                         </a>
                                         <a href="#">
-                                            <span><img src="{{ asset('assets/front/img/russia.png') }}" alt=""></span>
+                                            <span><img src="{{ asset('assets/front/img/russia.png') }}"
+                                                    alt=""></span>
                                             Russia
                                         </a>
                                         <a href="#">
@@ -86,7 +87,8 @@
                                             Spain
                                         </a>
                                         <a href="#">
-                                            <span><img src="{{ asset('assets/front/img/brazil.png') }}" alt=""></span>
+                                            <span><img src="{{ asset('assets/front/img/brazil.png') }}"
+                                                    alt=""></span>
                                             Brazil
                                         </a>
                                         <a href="#">
@@ -230,7 +232,19 @@
                                                         ornare tempus. Duis sit amet accumsan justo.</p>
                                                 </div>
                                             </a>
+
                                             <!-- End Item Single -->
+                                        </div>
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                                 document.getElementById('logout-form').submit();">
+                                                {{ __('Logout') }}
+                                            </a>
+
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                                class="d-none">
+                                                @csrf
+                                            </form>
                                         </div>
                                         <!-- End Dropdown Body -->
                                     </div>
@@ -310,6 +324,8 @@
                                 <!-- End Main Header Notification -->
                             </li>
                         </ul>
+
+
                     </div>
                     <!-- End Header Right -->
                 </div>
