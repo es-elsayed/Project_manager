@@ -1,7 +1,8 @@
 @extends('layouts.site')
 @section('content')
+    @include('front.Projects.includes.create_middlebar')
     <div class="row">
-        @include('front.Projects.includes.projects_middlebar')
+        {{-- @include('front.Projects.includes.projects_middlebar') --}}
         @foreach ($projects as $project)
             <div class="col-xl-3 col-lg-4 col-sm-6">
                 <!-- Project Box -->
@@ -71,7 +72,7 @@
                 <!-- End Project Box -->
             </div>
         @endforeach
-        <div class="col-xl-3 col-lg-4 col-sm-6">
+        {{-- <div class="col-xl-3 col-lg-4 col-sm-6">
             <!-- Project Box -->
             <div class="project-box d-flex align-items-center justify-content-center mb-30">
                 <a href="{{ route('projects.create') }}" class="bold font-14 black d-flex align-items-center">
@@ -80,6 +81,6 @@
                 </a>
             </div>
             <!-- End Project Box -->
-        </div>
+        </div> --}}
     </div>
 @endsection

@@ -6,7 +6,7 @@
 
                 <!-- Add New Contact Btn -->
                 <div class="add-new-contact mr-20">
-                    <a href="project.html" class="btn-home">
+                    <a href="{{ route('home') }}" class="btn-home">
                         <img src="{{ asset('assets/front/img/svg/home.svg') }}" alt="" class="svg">
                     </a>
                 </div>
@@ -20,8 +20,11 @@
                 <!-- End Starred -->
 
                 <!-- Add Title -->
-                <form action="#" class="add-title flex-grow">
-                    <input type="text" class="theme-input-style bold" placeholder="Board title">
+                <form method="POST" action="{{ route('projects.store') }}" class="add-title flex-grow">
+                    @csrf
+                    <input type="text" class="theme-input-style w-75 bold" name="project_title"
+                        placeholder="Project title">
+                    <input type="submit" value="Save Project" class="btn">
                 </form>
                 <!-- End Add Title -->
             </div>
@@ -38,9 +41,9 @@
                 <!-- End Member -->
 
                 <!-- Create New Board -->
-                <div class="create-new-board mb-2 mb-sm-0">
-                    <a href="#" class="btn">save Now</a>
-                </div>
+                {{-- <div class="create-new-board mb-2 mb-sm-0">
+                    <a href="{{ route('projects.store') }}" class="btn">Save Project</a>
+                </div> --}}
                 <!-- End Create New Board -->
 
                 <!-- Board Close -->

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProjectManagerController extends Controller
 {
@@ -14,6 +16,15 @@ class ProjectManagerController extends Controller
     }
     public function create()
     {
-        return view('front.Projects.create');
+        $tasks = Task::all();
+        return view('front.Projects.create', ['tasks' => $tasks]);
+    }
+    public function store(Request $request)
+    {
+        $project = Project::create([
+            'title' => $request->project_title,
+            'user_id' => Auth::id(),
+        ]);
+        return redirect()->route('projects.index');
     }
 }

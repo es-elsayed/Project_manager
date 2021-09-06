@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProjectManagerController;
+use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +26,7 @@ Route::get('/logout', function () {
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/projects', [ProjectManagerController::class, 'index'])->name('projects.index');
     Route::get('/projects/create', [ProjectManagerController::class, 'create'])->name('projects.create');
+    Route::post('/projects', [ProjectManagerController::class, 'store'])->name('projects.store');
 });
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
