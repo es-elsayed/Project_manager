@@ -15,7 +15,7 @@
         <ul class="nav">
             <li class="nav-category">Main</li>
             <li class="active">
-                <a href="{{ route('tasks.index') }}">
+                <a href="{{ route('projects.index') }}">
                     <i class="icofont-calendar"></i>
                     <span class="link-title">Tasks</span>
                 </a>

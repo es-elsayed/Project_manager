@@ -55,9 +55,7 @@
             <!-- Main Content -->
             <div class="main-content">
                 <div class="container-fluid">
-                    <div class="row">
-                        @yield('content')
-                    </div>
+                    @yield('content')
                 </div>
             </div>
             <!-- End Main Content -->

@@ -16,11 +16,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('layouts.site');
+    return redirect()->route('home');
+});
+Route::get('/logout', function () {
+    Auth::logout();
+    return redirect()->route('home');
 });
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/projects', [ProjectManagerController::class, 'index'])->name('tasks.index');
+    Route::get('/projects', [ProjectManagerController::class, 'index'])->name('projects.index');
+    Route::get('/projects/create', [ProjectManagerController::class, 'create'])->name('projects.create');
 });
 Auth::routes();
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

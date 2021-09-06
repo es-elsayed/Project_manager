@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Project;
 use Illuminate\Http\Request;
 
 class ProjectManagerController extends Controller
 {
     public function index()
     {
-        return view('front.Tasks.tasks');
+        $projects = Project::all();
+        return view('front.Projects.project', ['projects' => $projects]);
+    }
+    public function create()
+    {
+        return view('front.Projects.create');
     }
 }

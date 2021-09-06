@@ -1,4 +1,6 @@
 @extends('layouts.site')
 @section('content')
-    <h1>Hello</h1>
+    <div class="row">
+        <h1>Hello</h1>
+    </div>
 @endsection
