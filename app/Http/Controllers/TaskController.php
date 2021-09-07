@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
+    public function index()
+    {
+        return view('front.Projects.Tasks.tasks');
+    }
     // public function store(Request $request)
     // {
     //     $task = Task::create([

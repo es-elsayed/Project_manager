@@ -24,9 +24,17 @@ Route::get('/logout', function () {
     return redirect()->route('home');
 });
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/projects', [ProjectManagerController::class, 'index'])->name('projects.index');
-    Route::get('/projects/create', [ProjectManagerController::class, 'create'])->name('projects.create');
-    Route::post('/projects', [ProjectManagerController::class, 'store'])->name('projects.store');
+    Route::group(['prefix' => 'projects'], function () {
+        Route::get('/', [ProjectManagerController::class, 'index'])->name('projects.index');
+        Route::get('/create', [ProjectManagerController::class, 'create'])->name('projects.create');
+        Route::post('/', [ProjectManagerController::class, 'store'])->name('projects.store');
+        Route::delete('/{id}', [ProjectManagerController::class, 'destroy'])->name('projects.destroy');
+        // Route::get('/{id}', [ProjectManagerController::class, 'edit'])->name('projects.edit');
+        // Route::put('/{id}', [ProjectManagerController::class, 'update'])->name('projects.update');
+        Route::group(['prefix' => 'tasks'], function () {
+            Route::get('/', [TaskController::class, 'index'])->name('projects.tasks.index');
+        });
+    });
 });
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

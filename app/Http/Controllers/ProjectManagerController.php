@@ -27,4 +27,9 @@ class ProjectManagerController extends Controller
         ]);
         return redirect()->route('projects.index');
     }
+    public function destroy(Request $request)
+    {
+        Project::destroy($request->id);
+        return redirect()->back()->with(['success' => 'The Project delete Successfuly']);
+    }
 }

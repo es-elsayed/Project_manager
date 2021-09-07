@@ -16,7 +16,7 @@
 
                     <div class="d-flex justify-content-between align-items-center mb-20">
                         <div class="___class_+?23___">
-                            <a href="task-list.html">
+                            <a href="{{ route('projects.tasks.index') }}">
                                 <h4>{{ $project->title }}</h4>
                             </a>
                         </div>
@@ -38,8 +38,13 @@
                                         <span></span>
                                     </div>
                                 </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <div class="color-balls">
+                                <form action="/example" method="POST">
+                                    <input type="hidden" name="_method" value="PUT">
+                                    <input type="hidden" name="_method" value="Delete">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                </form>
+                                <div class="dropdown-menu dropdown-menu-right text-center">
+                                    {{-- <div class="color-balls">
                                         <span class="color color1"></span>
                                         <span class="color color2"></span>
                                         <span class="color color3"></span>
@@ -48,10 +53,30 @@
                                         <span class="color color6"></span>
                                         <span class="color color7"></span>
                                         <span class="color color8"></span>
-                                    </div>
-                                    <a href="create-new.html" class="edit">Edit</a>
-                                    <a href="#" class="select">Select</a>
-                                    <a href="#" class="delete">Delete</a>
+                                    </div> --}}
+                                    <form action="{{ route('projects.destroy', ['id' => $project->id]) }}" method="POST">
+                                        @method('put')
+                                        @csrf
+                                        <input type="submit" value="Edit" class="bg-transparent ">
+                                    </form>
+                                    <form action="{{ route('projects.destroy', ['id' => $project->id]) }}" method="POST">
+                                        @method('put')
+                                        @csrf
+                                        <input type="submit" value="Select" class="bg-transparent ">
+                                    </form>
+                                    {{-- <a href="{{ route('projects.destroy', ['id' => $project->id]) }}"
+                                        class="edit">Edit</a> --}}
+                                    {{-- <a href="{{ route('projects.edit', ['id' => $project->id]) }}"
+                                        class="edit">Edit</a>
+                                    <a href="#" class="select">Select</a> --}}
+                                    {{-- <a
+                                        href="{{ route('projects.delete', ['id' => $project->id, 'method' => 'DELETE']) }}">Delete</a> --}}
+                                    <form action="{{ route('projects.destroy', ['id' => $project->id]) }}" method="POST">
+                                        {{-- <input type="hidden" name="_method" value="PUT"> --}}
+                                        @method('delete')
+                                        @csrf
+                                        <input type="submit" value="Delete" class="bg-transparent">
+                                    </form>
                                 </div>
                             </div>
                             <!-- End Dropdown Button -->
