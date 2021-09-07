@@ -31,6 +31,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::delete('/{id}', [ProjectManagerController::class, 'destroy'])->name('projects.destroy');
         // Route::get('/{id}', [ProjectManagerController::class, 'edit'])->name('projects.edit');
         // Route::put('/{id}', [ProjectManagerController::class, 'update'])->name('projects.update');
+    });
+    Route::group(['prefix' => 'projects/{pid}'], function () {
         Route::group(['prefix' => 'tasks'], function () {
             Route::get('/', [TaskController::class, 'index'])->name('projects.tasks.index');
         });

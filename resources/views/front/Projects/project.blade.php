@@ -16,7 +16,7 @@
 
                     <div class="d-flex justify-content-between align-items-center mb-20">
                         <div class="___class_+?23___">
-                            <a href="{{ route('projects.tasks.index') }}">
+                            <a href="{{ route('projects.tasks.index', ['pid' => $project->id]) }}">
                                 <h4>{{ $project->title }}</h4>
                             </a>
                         </div>

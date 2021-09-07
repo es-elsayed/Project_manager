@@ -18,6 +18,7 @@ class CreateTasksTable extends Migration
             $table->string('title', 255);
             $table->integer('project_id');
             $table->integer('user_id');
+            $table->enum('status', ['0,', '1', '2']);
             $table->timestamps();
         });
     }

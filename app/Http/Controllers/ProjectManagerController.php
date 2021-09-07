@@ -11,7 +11,7 @@ class ProjectManagerController extends Controller
 {
     public function index()
     {
-        $projects = Project::all();
+        $projects = Project::where(["user_id" => Auth::id()])->get();
         return view('front.Projects.project', ['projects' => $projects]);
     }
     public function create()

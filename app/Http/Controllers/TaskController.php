@@ -9,9 +9,11 @@ use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return view('front.Projects.Tasks.tasks');
+        Project::where(['user_id' => Auth::id()])->findOrFail($request->pid);
+        $tasks = Task::where(['project_id' => $request->pid])->get();
+        return view('front.Projects.Tasks.tasks', ['tasks' => $tasks]);
     }
     // public function store(Request $request)
     // {
