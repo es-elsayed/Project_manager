@@ -61,8 +61,7 @@
                     <a href="#"><img src="{{ asset('assets/front/img/avatar/m27.png') }}" alt=""></a>
                     {{-- <a href="#"><img src="{{ asset('assets/front/img/avatar/m12.png') }}" alt=""></a>
                     <a href="#"><img src="{{ asset('assets/front/img/avatar/m2.png') }}" alt=""></a> --}}
-                    <button class="btn-circle task-header"
-                        onclick="document.querySelector('.add-display').style.display='block'">
+                    <button class="btn-circle task-header" onclick="myfun()">
                         <img src="{{ asset('assets/front/img/svg/plus_white.svg') }}" alt="" class="svg">
                     </button>
                 </div>
@@ -139,3 +138,17 @@
         <!-- End Contact Header -->
     </div>
 </div>
+<script>
+    var flag = true;
+
+    function myfun() {
+        console.log(flag);
+        if (flag) {
+            document.querySelector('.add-display').style.display = 'block'
+        } else {
+            document.querySelector('.add-display').style.display = 'none'
+
+        }
+        flag = !flag;
+    }
+</script>
