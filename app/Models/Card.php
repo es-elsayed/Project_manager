@@ -12,6 +12,7 @@ class Card extends Model
         'id',
         'title',
         'user_id',
+        'project_id',
         'status',
         'task_id',
     ];

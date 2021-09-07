@@ -29,16 +29,22 @@
 
                 <!-- Boards Cards -->
                 {{-- ******** task card ********* --}}
-                <div class="board-cards ui-sortable">
-                    <div class="board-card">
-                        <p class="black mb-2">card one</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="left d-flex align-items-center"><img src="../../../assets/img/svg/watch.svg" alt=""
-                                    class="svg mr-1"><a href="#" class="text_color font-12">7 September</a>
+
+                @foreach ($cards as $card)
+                    @if ($task->id == $card->task_id)
+                        <div class="board-cards ui-sortable">
+                            <div class="board-card">
+                                <p class="black mb-2">{{ $card->title }}</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="left d-flex align-items-center"><img src="../../../assets/img/svg/watch.svg"
+                                            alt="" class="svg mr-1"><a href="#"
+                                            class="text_color font-12">{{ $card->created_at }}</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    @endif
+                @endforeach
                 {{-- ******** task card ********* --}}
                 <!-- End Boards Cards -->
 
@@ -49,8 +55,11 @@
                         <span class="font-14 bold c4">Add another card</span>
                     </a> --}}
                     <div class="add-card w-100">
-                        <form action="#" method="POST">
-                            <textarea class="theme-input-style style--five" placeholder="List Title"></textarea>
+                        <form action="{{ route('projects.tasks.card.store', ['pid' => $pid, 'tid' => $task->id]) }}"
+                            method="POST">
+                            @csrf
+                            <textarea class="theme-input-style style--five" name="card_title"
+                                placeholder="List Title"></textarea>
 
                             <div class="d-flex align-items-center justify-content-between mt-2">
                                 <div class="date d-flex align-items-center">
@@ -61,7 +70,7 @@
 
                                 <div class="actions">
                                     <a href="#" class="cancel font-14 bold mr-3"> Cancel </a>
-                                    <a href="#" class="btn save"> Save </a>
+                                    <button type="submit" class="btn save"> Save </button>
                                 </div>
                             </div>
                         </form>

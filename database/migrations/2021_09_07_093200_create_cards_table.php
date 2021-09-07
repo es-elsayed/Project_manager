@@ -17,7 +17,7 @@ class CreateCardsTable extends Migration
             $table->id();
             $table->string('title', 255);
             $table->integer('user_id');
-            $table->enum('status', ['0,1,2'])->default('0');
+            $table->enum('status', ['0', '1', '2'])->default('0');
             $table->integer('task_id');
             $table->timestamps();
         });

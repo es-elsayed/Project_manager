@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Front\CardController;
 use App\Http\Controllers\Front\ProjectController;
 use App\Http\Controllers\Front\TaskController;
 use Illuminate\Support\Facades\Auth;
@@ -36,6 +37,11 @@ Route::group(['middleware' => 'auth'], function () {
         Route::group(['prefix' => 'tasks'], function () {
             Route::get('/', [TaskController::class, 'index'])->name('projects.tasks.index');
             Route::post('/', [TaskController::class, 'store'])->name('projects.tasks.store');
+        });
+        Route::group(['prefix' => 'tasks/{tid}'], function () {
+            Route::group(['prefix' => 'card'], function () {
+                Route::post('/', [CardController::class, 'store'])->name('projects.tasks.card.store');
+            });
         });
     });
 });

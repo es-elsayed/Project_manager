@@ -38,11 +38,11 @@
                                         <span></span>
                                     </div>
                                 </a>
-                                <form action="/example" method="POST">
+                                {{-- <form action="/example" method="POST">
                                     <input type="hidden" name="_method" value="PUT">
                                     <input type="hidden" name="_method" value="Delete">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                </form>
+                                </form> --}}
                                 <div class="dropdown-menu dropdown-menu-right text-center">
                                     {{-- <div class="color-balls">
                                         <span class="color color1"></span>
