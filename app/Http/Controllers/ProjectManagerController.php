@@ -29,6 +29,7 @@ class ProjectManagerController extends Controller
     }
     public function destroy(Request $request)
     {
+        Task::where('project_id', $request->id)->delete();
         Project::destroy($request->id);
         return redirect()->back()->with(['success' => 'The Project delete Successfuly']);
     }
