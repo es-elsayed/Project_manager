@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\ProjectManagerController;
-use App\Http\Controllers\TaskController;
+use App\Http\Controllers\Front\ProjectController;
+use App\Http\Controllers\Front\TaskController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -25,12 +25,12 @@ Route::get('/logout', function () {
 });
 Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'projects'], function () {
-        Route::get('/', [ProjectManagerController::class, 'index'])->name('projects.index');
-        Route::get('/create', [ProjectManagerController::class, 'create'])->name('projects.create');
-        Route::post('/', [ProjectManagerController::class, 'store'])->name('projects.store');
-        Route::delete('/{id}', [ProjectManagerController::class, 'destroy'])->name('projects.destroy');
-        // Route::get('/{id}', [ProjectManagerController::class, 'edit'])->name('projects.edit');
-        // Route::put('/{id}', [ProjectManagerController::class, 'update'])->name('projects.update');
+        Route::get('/', [ProjectController::class, 'index'])->name('projects.index');
+        Route::get('/create', [ProjectController::class, 'create'])->name('projects.create');
+        Route::post('/', [ProjectController::class, 'store'])->name('projects.store');
+        Route::delete('/{id}', [ProjectController::class, 'destroy'])->name('projects.destroy');
+        // Route::get('/{id}', [ProjectController::class, 'edit'])->name('projects.edit');
+        // Route::put('/{id}', [ProjectController::class, 'update'])->name('projects.update');
     });
     Route::group(['prefix' => 'projects/{pid}'], function () {
         Route::group(['prefix' => 'tasks'], function () {
