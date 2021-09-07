@@ -35,6 +35,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'projects/{pid}'], function () {
         Route::group(['prefix' => 'tasks'], function () {
             Route::get('/', [TaskController::class, 'index'])->name('projects.tasks.index');
+            Route::post('/', [TaskController::class, 'store'])->name('projects.tasks.store');
         });
     });
 });

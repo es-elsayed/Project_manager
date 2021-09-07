@@ -191,8 +191,9 @@
                 </a>
 
                 <div class="add-card add-another-list">
-                    <form action="#">
-                        <input type="text" class="theme-input-style" placeholder="List Title">
+                    <form method="POST" action="{{ route('projects.tasks.store', ['pid' => $pid]) }}">
+                        @csrf
+                        <input type="text" class="theme-input-style" name="task_title" placeholder="List Title">
                     </form>
                 </div>
             </div>
