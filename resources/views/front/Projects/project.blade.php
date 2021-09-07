@@ -1,6 +1,6 @@
 @extends('layouts.site')
 @section('content')
-    @include('front.Projects.includes.create_middlebar')
+    @include('front.Projects.includes.projects_middlebar')
     <div class="row">
         {{-- @include('front.Projects.includes.projects_middlebar') --}}
         @foreach ($projects as $project)

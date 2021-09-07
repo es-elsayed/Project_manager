@@ -1,5 +1,6 @@
 @extends('layouts.site')
 @section('content')
+    @include('front.Projects.Tasks.includes.tasks-header')
     <div class="board-wrapper">
         <!-- Board -->
         @foreach ($tasks as $task)
@@ -36,8 +37,9 @@
                             <div class="board-card">
                                 <p class="black mb-2">{{ $card->title }}</p>
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <div class="left d-flex align-items-center"><img src="../../../assets/img/svg/watch.svg"
-                                            alt="" class="svg mr-1"><a href="#"
+                                    <div class="left d-flex align-items-center"><img
+                                            src="{{ asset('assets/front/img/svg/watch.svg') }}" alt=""
+                                            class="svg mr-1"><a href="#"
                                             class="text_color font-12">{{ $card->created_at }}</a>
                                     </div>
                                 </div>
@@ -50,12 +52,15 @@
 
                 <!-- Board Composer -->
                 <div class="board-composer flex-column d-flex align-items-center justify-content-center">
-                    {{-- <a href="#" class="add-another-card">
+                    <a href="#" style="display:flex;" class="add-another-card {{ 'hide_a' . $task->id }}"
+                        onclick="document.querySelector('.{{ 'add_card' . $task->id }}').hidden=false;
+                                                                                        document.querySelector('.{{ 'hide_a' . $task->id }}').style.display='none';">
                         <img src="{{ asset('/assets/front/img/svg/plus.svg') }}" alt="" class="svg mr-1">
                         <span class="font-14 bold c4">Add another card</span>
-                    </a> --}}
-                    <div class="add-card w-100">
-                        <form action="{{ route('projects.tasks.card.store', ['pid' => $pid, 'tid' => $task->id]) }}"
+                    </a>
+                    <div class="add-card {{ 'add_card' . $task->id }} w-100" hidden="true">
+                        <form
+                            action="{{ route('projects.tasks.card.store', ['pid' => $project->id, 'tid' => $task->id]) }}"
                             method="POST">
                             @csrf
                             <textarea class="theme-input-style style--five" name="card_title"
@@ -69,7 +74,9 @@
                                 </div>
 
                                 <div class="actions">
-                                    <a href="#" class="cancel font-14 bold mr-3"> Cancel </a>
+                                    <a class="cancel font-14 bold mr-3"
+                                        onclick="document.querySelector('.{{ 'add_card' . $task->id }}').hidden=true;
+                                                    document.querySelector('.{{ 'hide_a' . $task->id }}').style.display='flex';"> Cancel </a>
                                     <button type="submit" class="btn save"> Save </button>
                                 </div>
                             </div>
@@ -211,7 +218,7 @@
                 </a>
 
                 <div class="add-card add-another-list">
-                    <form method="POST" action="{{ route('projects.tasks.store', ['pid' => $pid]) }}">
+                    <form method="POST" action="{{ route('projects.tasks.store', ['pid' => $project->id]) }}">
                         @csrf
                         <input type="text" class="theme-input-style" name="task_title" placeholder="List Title">
                     </form>

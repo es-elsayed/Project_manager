@@ -13,10 +13,10 @@ class TaskController extends Controller
 {
     public function index(Request $request)
     {
-        Project::where(['user_id' => Auth::id()])->findOrFail($request->pid);
+        $project = Project::where(['user_id' => Auth::id()])->findOrFail($request->pid);
         $cards = Card::where(['project_id' => $request->pid])->get();
         $tasks = Task::where(['project_id' => $request->pid])->get();
-        return view('front.Projects.Tasks.tasks', ['tasks' => $tasks, 'pid' => $request->pid, 'cards' => $cards]);
+        return view('front.Projects.Tasks.tasks', ['tasks' => $tasks, 'project' => $project, 'cards' => $cards]);
     }
     public function store(Request $request)
     {
