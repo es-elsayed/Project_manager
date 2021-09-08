@@ -87,8 +87,10 @@
                         <!-- Modal Body -->
                         <div class="modal-body p-0">
                             <!-- Search Form -->
-                            <form class="search-form mb-3">
-                                <input type="search" class="theme-input-style" placeholder="Search Members">
+                            <form action="{{ route('') }}" method="POST" class="search-form mb-3">
+                                @csrf
+                                <input type="search" name="user_name" class="theme-input-style"
+                                    placeholder="Search Members">
                             </form>
                             <!-- End Search Form -->
 
@@ -142,7 +144,6 @@
     var flag = true;
 
     function myfun() {
-        console.log(flag);
         if (flag) {
             document.querySelector('.add-display').style.display = 'block'
         } else {

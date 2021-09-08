@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCardsTable extends Migration
+class CreateSharedProjectsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateCardsTable extends Migration
      */
     public function up()
     {
-        Schema::create('cards', function (Blueprint $table) {
+        Schema::create('shared_projects', function (Blueprint $table) {
             $table->id();
-            $table->string('title', 255);
-            $table->integer('user_id');
+            $table->string('project_id', 255);
+            $table->integer('creator_id');
+            $table->integer('shared_users');
             $table->enum('status', ['0', '1', '2'])->default('0');
-            $table->enum('priority', ['0', '1', '2'])->default('0');
-            $table->integer('task_id');
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CreateCardsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cards');
+        Schema::dropIfExists('shared_projects');
     }
 }

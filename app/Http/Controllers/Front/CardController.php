@@ -14,6 +14,7 @@ class CardController extends Controller
         $task = Card::create([
             'title' => $request->card_title,
             'task_id' => $request->tid,
+            'priority' => $request->priority,
             'project_id' => $request->pid,
             'user_id' => Auth::id(),
         ]);

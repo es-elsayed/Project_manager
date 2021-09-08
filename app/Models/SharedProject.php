@@ -5,24 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Card extends Model
+class SharedProject extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'id',
-        'title',
-        'user_id',
         'project_id',
+        'creator_id',
+        'shared_users',
         'status',
-        'priority',
-        'task_id',
     ];
     protected $hidden = [
         'created_at',
         'updated_at',
     ];
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
 }

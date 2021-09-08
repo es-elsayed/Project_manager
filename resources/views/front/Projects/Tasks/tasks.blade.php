@@ -35,7 +35,7 @@
                     @if ($task->id == $card->task_id)
                         <div class="board-cards ui-sortable">
                             <div class="board-card">
-                                <p class="black mb-2">{{ $card->title }}</p>
+                                <p class=" black mb-2">{{ $card->title }}</p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="left d-flex align-items-center"><img
                                             src="{{ asset('assets/front/img/svg/watch.svg') }}" alt=""
@@ -44,7 +44,10 @@
                                     </div>
                                 </div>
                             </div>
+                            <span>{{ $card->priority }}</span>
                         </div>
+
+
                     @endif
                 @endforeach
                 {{-- ******** task card ********* --}}
@@ -54,7 +57,7 @@
                 <div class="board-composer flex-column d-flex align-items-center justify-content-center">
                     <a href="#" style="display:flex;" class="add-another-card {{ 'hide_a' . $task->id }}"
                         onclick="document.querySelector('.{{ 'add_card' . $task->id }}').hidden=false;
-                                                                                        document.querySelector('.{{ 'hide_a' . $task->id }}').style.display='none';">
+                                                                                                                                                                                                                    document.querySelector('.{{ 'hide_a' . $task->id }}').style.display='none';">
                         <img src="{{ asset('/assets/front/img/svg/plus.svg') }}" alt="" class="svg mr-1">
                         <span class="font-14 bold c4">Add another card</span>
                     </a>
@@ -65,18 +68,24 @@
                             @csrf
                             <textarea class="theme-input-style style--five" name="card_title"
                                 placeholder="List Title"></textarea>
-
                             <div class="d-flex align-items-center justify-content-between mt-2">
-                                <div class="date d-flex align-items-center">
+                                <select name="priority" class="form-control w-50 d-flex" id="">
+                                    <option value="#67cf94">normal</option>
+                                    <option value="#FFB959">Important</option>
+                                    <option value="#FC7383">urgent</option>
+                                </select>
+                                {{-- <div class="date d-flex align-items-center">
                                     <img src="{{ asset('/assets/front/img/svg/watch.svg') }}" alt=""
                                         class="svg mr-1">
                                     <span class="date-text">16 May 2020</span>
-                                </div>
+                                </div> --}}
 
                                 <div class="actions">
                                     <a class="cancel font-14 bold mr-3"
                                         onclick="document.querySelector('.{{ 'add_card' . $task->id }}').hidden=true;
-                                                    document.querySelector('.{{ 'hide_a' . $task->id }}').style.display='flex';"> Cancel </a>
+                                                                                                                                                                                document.querySelector('.{{ 'hide_a' . $task->id }}').style.display='flex';">
+                                        Cancel
+                                    </a>
                                     <button type="submit" class="btn save"> Save </button>
                                 </div>
                             </div>
