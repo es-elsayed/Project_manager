@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Front\CardController;
 use App\Http\Controllers\Front\ProjectController;
+use App\Http\Controllers\Front\SharedProjectController;
 use App\Http\Controllers\Front\TaskController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -33,16 +34,15 @@ Route::group(['middleware' => 'auth'], function () {
         // Route::get('/{id}', [ProjectController::class, 'edit'])->name('projects.edit');
         // Route::put('/{id}', [ProjectController::class, 'update'])->name('projects.update');
     });
-    Route::group(['prefix' => 'projects/{pid}'], function () {
-        Route::group(['prefix' => 'tasks'], function () {
-            Route::get('/', [TaskController::class, 'index'])->name('projects.tasks.index');
-            Route::post('/', [TaskController::class, 'store'])->name('projects.tasks.store');
-        });
-        Route::group(['prefix' => 'tasks/{tid}'], function () {
-            Route::group(['prefix' => 'card'], function () {
-                Route::post('/', [CardController::class, 'store'])->name('projects.tasks.card.store');
-            });
-        });
+    Route::group(['prefix' => 'projects/{pid}/tasks'], function () {
+        Route::get('/', [TaskController::class, 'index'])->name('projects.tasks.index');
+        Route::post('/', [TaskController::class, 'store'])->name('projects.tasks.store');
+    });
+    Route::group(['prefix' => 'projects/{pid}/Shared'], function () {
+        Route::post('/', [SharedProjectController::class, 'store'])->name('projects.shared.store');
+    });
+    Route::group(['prefix' => 'projects/{pid}/tasks/{tid}/card'], function () {
+        Route::post('/', [CardController::class, 'store'])->name('projects.tasks.card.store');
     });
 });
 Auth::routes();

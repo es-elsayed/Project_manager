@@ -87,7 +87,8 @@
                         <!-- Modal Body -->
                         <div class="modal-body p-0">
                             <!-- Search Form -->
-                            <form action="{{ route('') }}" method="POST" class="search-form mb-3">
+                            <form action="{{ route('projects.shared.store', ['pid' => $project->id]) }}" method="POST"
+                                class="search-form mb-3">
                                 @csrf
                                 <input type="search" name="user_name" class="theme-input-style"
                                     placeholder="Search Members">
